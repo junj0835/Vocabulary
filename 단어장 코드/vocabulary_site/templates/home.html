@@ -1,0 +1,28 @@
+
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vocabulary Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Vocabulary Builder</h1>
+        <a href="{{ url_for('add_word') }}" class="button">Add New Word</a>
+        
+        <div class="word-list">
+            {% for word in words %}
+            <div class="word-card">
+                <h2>{{ word.word }}</h2>
+                <p><strong>Definition:</strong> {{ word.definition }}</p>
+                {% if word.example %}
+                <p><strong>Example:</strong> {{ word.example }}</p>
+                {% endif %}
+                <p class="date">Added on: {{ word.date_added.strftime('%Y-%m-%d') }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
